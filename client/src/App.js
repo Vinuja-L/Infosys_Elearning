@@ -14,6 +14,7 @@ import Teachers from './pages/hiru/Teachers';
 import Inquaries from './pages/hiru/Inquaries';
 import Blog from './pages/hiru/Blog';
 import Topbar from './componets/topbar/Topbar';
+import EduVideoSection from './pages/hiru/EduVideoSection';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/teachers" element={<Teachers />} />
           <Route path="/inquaries" element={<Inquaries />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/EduVideoSection" element={<EduVideoSection />} />
         </Routes>
         
       </Sidebar>

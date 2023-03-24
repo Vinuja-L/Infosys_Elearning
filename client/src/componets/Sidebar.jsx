@@ -13,6 +13,7 @@ import {
     FaPen,
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 
 
 const Sidebar = ({children}) => {
@@ -61,6 +62,11 @@ const Sidebar = ({children}) => {
             icon:<FaUserFriends/>
         },
         {
+            path:"/EduVideoSection",
+            name:"Edu-VideoSec",
+            icon:<OndemandVideoIcon/>
+        },
+        {
             path:"/inquaries",
             name:"Inquaries",
             icon:<FaRegCommentAlt/>
@@ -69,7 +75,7 @@ const Sidebar = ({children}) => {
             path:"/blog",
             name:"Blog",
             icon:<FaPen/>
-        },
+        }
     ]
     return (
         <div className="container">
