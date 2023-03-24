@@ -3,7 +3,7 @@ module.exports=(sequelize,DataTypes) =>{
 
     const Users =sequelize.define ("Users", {
               
-          firstame: {
+          firstname: {
             type:DataTypes.STRING,
             allowNull:false,
             
@@ -29,7 +29,6 @@ module.exports=(sequelize,DataTypes) =>{
           },
               
      });
-
       return Users ;
-    
+  
 }

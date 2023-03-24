@@ -4,11 +4,8 @@ const { Users } = require("../models");
 const bcrypt = require("bcrypt");
 const app = express();
 
-// Add middleware to parse incoming JSON payloads
-app.use(express.json());
-
 router.post("/", async (req, res) => {
-    console.log(req.body); 
+   
     const {firstname,lastname,email,role,password } = req.body;
     bcrypt.hash(password, 10).then((hash) => {
         Users.create({
@@ -22,5 +19,18 @@ router.post("/", async (req, res) => {
     });
 });
 
-router.post('/login',async(req,res) =>{})
+router.post('/login',async(req,res) =>{
+    const {email,password} =req.body;
+
+    const user =await Users.findOne({where:{email:email}});
+
+    if(!user) res.json({error:"User Does not exist"});
+    
+    bcrypt.compare(password,user.password).then ((match) =>{
+        if(!match) res.json({error:"Wrong username and password combination"});
+
+        res.json("You logged in");
+    });
+
+});
 module.exports = router;
