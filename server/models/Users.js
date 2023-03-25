@@ -16,15 +16,14 @@ module.exports=(sequelize,DataTypes) =>{
             type:DataTypes.STRING,
             allowNull:false,
           },
-         
-          role: {
+          password: {
             type:DataTypes.STRING,
-            enum: ["admin", "teacher", "students"],
             allowNull:false,
           },
 
-          password: {
+          role: {
             type:DataTypes.STRING,
+            enum: ["admin", "teacher", "students"],
             allowNull:false,
           },
               

@@ -6,15 +6,18 @@ import Login from './pages/Authentication/Login';
 import Registration from './pages/Authentication/Registration';
 
 
+
 const App = () => {
   return (
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/registration" element={<Registration/>} />
+      </Routes>
+    </BrowserRouter>
     
-        <Registration/>
-         
- 
     
-      
-    
+       
   );
 };
 
