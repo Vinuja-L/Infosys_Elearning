@@ -12,25 +12,37 @@ router.post("/", async (req, res) => {
             firstname:firstname,
             lastname:lastname,
             email: email,
-            role: role,
             password: hash,
+            role: role,
+            
         });
         res.json("SUCCESS");
     });
 });
 
-router.post('/login',async(req,res) =>{
-    const {email,password} =req.body;
-
-    const user =await Users.findOne({where:{email:email}});
-
-    if(!user) res.json({error:"User Does not exist"});
-    
-    bcrypt.compare(password,user.password).then ((match) =>{
-        if(!match) res.json({error:"Wrong username and password combination"});
-
-        res.json("You logged in");
+router.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+  
+    const user = await Users.findOne({ where: { email: email } });
+  
+    if (!user) {
+      res.json({ error: "User does not exist" });
+      return;
+    }
+  
+    if (!user.password) {
+      res.json({ error: "Password not set for user" });
+      return;
+    }
+  
+    bcrypt.compare(password, user.password).then((match) => {
+      if (!match) {
+        res.json({ error: "Wrong email and password combination" });
+        return;
+      }
+  
+      res.json("You logged in");
     });
-
-});
+  });
+  
 module.exports = router;
