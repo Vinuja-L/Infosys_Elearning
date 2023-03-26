@@ -4,6 +4,8 @@ const { Users } = require("../models");
 const bcrypt = require("bcrypt");
 const app = express();
 
+const {sign}=require ("jsonwebtoken");
+
 router.post("/", async (req, res) => {
    
     const {firstname,lastname,email,role,password } = req.body;
@@ -15,8 +17,17 @@ router.post("/", async (req, res) => {
             password: hash,
             role: role,
             
-        });
-        res.json("SUCCESS");
+        }).then(()=>{
+          res.json("SUCCESS");
+
+        })
+        .catch((err) =>{
+          if(err){
+            res.status(400).json({error:err});
+          }
+
+        })
+        
     });
 });
 
@@ -35,13 +46,16 @@ router.post("/login", async (req, res) => {
       return;
     }
   
-    bcrypt.compare(password, user.password).then((match) => {
+    bcrypt.compare(password, user.password).then(async(match) => {
       if (!match) {
         res.json({ error: "Wrong email and password combination" });
         return;
       }
-  
-      res.json("You logged in");
+      const accessToken =sign (
+      {email:user.email,id:user.id},
+        "importantsecret"
+      );
+      res.json(accessToken);
     });
   });
   

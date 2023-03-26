@@ -11,7 +11,11 @@ function Login() {
   const login = () => {
     const data = { email: email, password: password };
     axios.post("http://localhost:3002/auth/login", data).then((response) => {
-      console.log(response.data);
+    if (response.data.error) {
+      alert (response.data.error);
+    }else{
+      sessionStorage.setItem("accessToken",response.data);
+    }
     });
   };
 
@@ -124,18 +128,19 @@ function Login() {
           </Button>
 
                 
-                <Typography
-               
-                variant="h6"
-                padding={2}
-                textAlign="center"
-                fontFamily="Abril Fatface"
-                
-              >
-                 New to EduLab Pro ?
-                 <i> Create New Account</i>
-                
-            </Typography>
+          <Typography
+             variant="h6"
+             style={{
+             textAlign: "center",
+             fontFamily: "Abril Fatface",
+             padding: "16px",
+          }}
+            >
+              New to EduLab Pro ?
+             <i style={{ marginLeft: "8px" }}>Create New Account</i>
+             </Typography>
+
+
       </Box>
       </Grid>
       </Grid>
