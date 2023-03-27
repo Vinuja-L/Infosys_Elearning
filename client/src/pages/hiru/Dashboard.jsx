@@ -1,9 +1,10 @@
 import React from 'react'
 import { dashboard } from '../hiru/dummydata'
+import Index from '../../supportEngine/Index'
 const Dashboard = () => {
   return (
     <div>
-        
+        <Index/>
         <section className='dashboard'>
             <div className='container grid2'>
             {dashboard.map((val) => (

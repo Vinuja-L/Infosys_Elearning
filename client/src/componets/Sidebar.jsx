@@ -5,7 +5,7 @@ import {
     FaBars,
     FaUserAlt, 
     FaGraduationCap, 
-    FaFileAlt, 
+    FaFileSignature,
     FaAward, 
     FaFileContract,
     FaUserFriends,
@@ -43,7 +43,7 @@ const Sidebar = ({children}) => {
         {
             path:"/Forum",
             name:"Community Forum",
-            icon:<FaFileContract/>
+            icon:<FaFileSignature/>
         },
         {
             path:"/achivments",
@@ -53,7 +53,7 @@ const Sidebar = ({children}) => {
         {
             path:"/reports",
             name:"Reports",
-            icon:<FaFileAlt/>
+            icon:<FaFileContract/>
         },
         {
             path:"/teachers",

@@ -1,4 +1,4 @@
-import { FaUser,FaBell,FaSearch } from "react-icons/fa";
+import { FaWhmcs,FaBell,FaSearch } from "react-icons/fa";
 import "./topbar.css";
 
 
@@ -19,13 +19,12 @@ export default function Topbar() {
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
-          <span className="topbarLink">Homepage</span>
           <span className="topbarLink">About us</span>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
-            <FaUser />
-            <span className="topbarIconBadge">1</span>
+            <FaWhmcs />
+            
           </div>
           <div className="topbarIconItem">
             <FaBell />

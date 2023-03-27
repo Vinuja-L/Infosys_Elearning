@@ -4,7 +4,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Sidebar from './componets/Sidebar'
 import Dashboard from './pages/hiru/Dashboard';
-import Home from './pages/hiru/Home';
+import Home2 from './pages/hiru/Home2';
 import Profile from './pages/hiru/Profile';
 import MyCourses from './pages/hiru/MyCourses';
 import Forum from './pages/hiru/Forum';
@@ -15,13 +15,16 @@ import Inquaries from './pages/hiru/Inquaries';
 import Blog from './pages/hiru/Blog';
 import Topbar from './componets/topbar/Topbar';
 
+
 const App = () => {
   return (
     <BrowserRouter>
+   
       <Sidebar>
         <Topbar/>
+        
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home2 />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/mycourses" element={<MyCourses />} />
@@ -32,8 +35,7 @@ const App = () => {
           <Route path="/inquaries" element={<Inquaries />} />
           <Route path="/blog" element={<Blog />} />
         </Routes>
-        
-      </Sidebar>
+        </Sidebar>
     </BrowserRouter>
   );
 };
