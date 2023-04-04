@@ -1,27 +1,41 @@
-import { Box, TextField, Typography, Button, Grid } from "@mui/material";
+import { Box, TextField, Typography, Button, Grid} from "@mui/material";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../Authentication/Authentication.css";
-import axios from "axios";
+import axios from "axios";   // Import axios package for making API requests
 import Loginimg from "../../images/loicon.png";
 
+/**
+ * 
+ * @returns 
+ */
 function Login() {
+  // Create state variables for email and password inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Function for handling login button click
   const login = () => {
+
+     // Create data object with email and password
     const data = { email: email, password: password };
     axios.post("http://localhost:3002/auth/login", data).then((response) => {
-    if (response.data.error) {
-      alert (response.data.error);
-    }else{
-      sessionStorage.setItem("accessToken",response.data);
-    }
+      if (response.data.error) {
+        alert(response.data.error);      //If there is an error in the response, display an alert
+      } else {
+
+        // If successful, save the access token to sessionStorage
+        sessionStorage.setItem("accessToken", response.data);
+      }
     });
   };
 
+    // Return the login page layout
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3}>
+        {/* Left grid item for page header */}
       <Grid item xs={12} sm={6}>
+         {/* Page header */}
         <Typography
           variant="h3"
           marginTop={30}
@@ -38,6 +52,7 @@ function Login() {
         </Typography>
       </Grid>
 
+       {/* Right grid item for login form */}
       <Grid item xs={12} sm={6}>
         <Box
           display="flex"
@@ -50,10 +65,11 @@ function Login() {
           padding={5}
           borderRadius={5}
           sx={{
-            background: " radial-gradient(circle,#b25000,#FF7300,#ff8f33,#FF7300)",
+            background:
+              " radial-gradient(circle,#b25000,#FF7300,#ff8f33,#FF7300)",
           }}
         >
-          <img src={Loginimg} width="140px" />
+          <img src={Loginimg} width="110px" />
           <Typography
             color="FF7300"
             variant="h6"
@@ -108,7 +124,13 @@ function Login() {
               setPassword(event.target.value);
             }}
           />
-          <Typography variant="body2" alignSelf="flex-end" color="blue">
+          <Typography
+            variant="body2"
+            alignSelf="flex-end"
+            color="blue"
+            component={Link}
+            to={"/Forgotpassword"}
+          >
             <i>Forgot password</i>
           </Typography>
 
@@ -127,26 +149,23 @@ function Login() {
             Login
           </Button>
 
-                
           <Typography
-             variant="h6"
-             style={{
-             textAlign: "center",
-             fontFamily: "Abril Fatface",
-             padding: "16px",
-          }}
-            >
-              New to EduLab Pro ?
-             <i style={{ marginLeft: "8px" }}>Create New Account</i>
-             </Typography>
-
-
-      </Box>
+            variant="h6"
+            style={{
+              textAlign: "center",
+              fontFamily: "Abril Fatface",
+              padding: "16px",
+            }}
+          >
+            New to EduLab Pro ? {""}
+            <Link to={"/Registration"}>
+              <i style={{ marginLeft: "8px" }}>Create New Account</i>
+            </Link>
+          </Typography>
+        </Box>
       </Grid>
-      </Grid>
-    
-   
+    </Grid>
   );
-};
+}
 
-export default Login
+export default Login;

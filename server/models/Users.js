@@ -1,12 +1,8 @@
-
 module.exports=(sequelize,DataTypes) =>{
-
-    const Users =sequelize.define ("Users", {
-              
+    const Users =sequelize.define ("Users", {    
           firstname: {
             type:DataTypes.STRING,
-            allowNull:false,
-            
+            allowNull:false, 
           },
           lastname: {
             type:DataTypes.STRING,
@@ -20,13 +16,11 @@ module.exports=(sequelize,DataTypes) =>{
             type:DataTypes.STRING,
             allowNull:false,
           },
-
           role: {
             type:DataTypes.STRING,
             enum: ["admin", "teacher", "students"],
             allowNull:false,
-          },
-              
+          },    
      });
       return Users ;
   
