@@ -2,40 +2,35 @@ import { Box, TextField, Typography, Button, Grid} from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Authentication/Authentication.css";
-import axios from "axios";   // Import axios package for making API requests
+import axios from "axios";  
 import Loginimg from "../../images/loicon.png";
 
 /**
- * 
- * @returns 
- */
+   * Function for handling login form submission.
+   * Sends an HTTP POST request to the server with the login credentials,
+   * and saves the access token to session storage if login is successful.
+*/
+
 function Login() {
-  // Create state variables for email and password inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Function for handling login button click
   const login = () => {
 
-     // Create data object with email and password
     const data = { email: email, password: password };
     axios.post("http://localhost:3002/auth/login", data).then((response) => {
       if (response.data.error) {
-        alert(response.data.error);      //If there is an error in the response, display an alert
+        alert(response.data.error);      
       } else {
-
-        // If successful, save the access token to sessionStorage
         sessionStorage.setItem("accessToken", response.data);
       }
     });
   };
 
-    // Return the login page layout
   return (
     <Grid container spacing={3}>
         {/* Left grid item for page header */}
       <Grid item xs={12} sm={6}>
-         {/* Page header */}
         <Typography
           variant="h3"
           marginTop={30}

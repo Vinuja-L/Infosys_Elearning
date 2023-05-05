@@ -4,8 +4,8 @@ const { Users } = require("../models");
 const bcrypt = require("bcrypt");
 const app = express();
 const {sign}=require ("jsonwebtoken");
+
 router.post("/", async (req, res) => {
-   
     const {firstname,lastname,email,role,password } = req.body;
     bcrypt.hash(password, 10).then((hash) => {
         Users.create({
@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
             email: email,
             password: hash,
             role: role,
-            
+
         }).then(()=>{
           res.json("SUCCESS");
         })
@@ -49,4 +49,5 @@ router.post("/login", async (req, res) => {
       res.json(accessToken);
     });
   }); 
+
 module.exports = router;
